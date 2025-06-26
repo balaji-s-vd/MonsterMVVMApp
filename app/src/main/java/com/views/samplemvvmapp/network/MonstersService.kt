@@ -6,10 +6,10 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface MonstersService {
-    @GET("/monsters")
+    @GET("monsters")
     suspend fun getMonstersList(): MonsterListResponse
 
-    @GET("/monsters/{index}")
+    @GET("monsters/{index}")
     suspend fun getMonsterDetails(
         @Path("index") index: String
     ): MonsterDetails

@@ -1,20 +1,21 @@
 package com.views.samplemvvmapp.ui.monster_details
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.views.samplemvvmapp.repository.MonstersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @HiltViewModel
-class MonsterDetailsViewModel (
+class MonsterDetailsViewModel @Inject constructor(
     private val monstersRepository: MonstersRepository
 ): ViewModel() {
     private val _state = MutableStateFlow(MonsterDetailsState())
-    val state = _state.asStateFlow()
+    val state = _state.asLiveData()
 
     fun getMonsterDetails(index: String) {
         viewModelScope.launch {

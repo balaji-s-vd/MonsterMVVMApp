@@ -5,8 +5,6 @@ import com.views.samplemvvmapp.domain.MonsterDetails
 import com.views.samplemvvmapp.domain.MonsterListDetails
 import com.views.samplemvvmapp.network.MonstersService
 import com.views.samplemvvmapp.repository.MonstersRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
 import javax.inject.Inject
 
 class MonstersRepositoryImpl @Inject constructor (
@@ -15,7 +13,7 @@ class MonstersRepositoryImpl @Inject constructor (
     override suspend fun getMonstersList(): List<MonsterListDetails> {
         return try {
             val response = monstersService.getMonstersList()
-            response.result
+            response.results
         } catch (ex: Exception) {
             Log.i("TAG", "getMonstersList: $ex")
             emptyList<MonsterListDetails>()

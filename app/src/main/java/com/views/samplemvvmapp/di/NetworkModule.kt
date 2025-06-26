@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
@@ -16,7 +17,8 @@ object NetworkModule {
     fun provideRetrofit(): Retrofit {
         return Retrofit
             .Builder()
-            .baseUrl("https://www.dnd5eapi.co/api/2014")
+            .baseUrl("https://www.dnd5eapi.co/api/2014/")
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 

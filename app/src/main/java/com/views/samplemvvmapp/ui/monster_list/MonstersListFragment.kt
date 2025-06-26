@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.views.samplemvvmapp.R
@@ -27,6 +28,7 @@ class MonstersListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_monsters_list, container, false)
+//        val navController
 
         lifecycleScope.launch {
             viewModel.state.observe(requireActivity(), Observer { state ->
@@ -38,7 +40,17 @@ class MonstersListFragment : Fragment() {
 
                 with(recyclerView) {
                     layoutManager = LinearLayoutManager(context)
-                    adapter = MyMonstersListDetailsRecyclerViewAdapter(state.list)
+                    adapter = MyMonstersListDetailsRecyclerViewAdapter(
+                        values = state.list,
+                        onItemClick = {
+                            val bundle = Bundle()
+                            bundle.putString("monster_id", it.index)
+                            findNavController().navigate(
+                                R.id.action_monsterListFragment_to_monsterDetailFragment,
+                                bundle
+                            )
+                        }
+                    )
                 }
             })
         }

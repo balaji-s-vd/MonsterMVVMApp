@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Sample MVVM App</string>
     <string name="monster_image">Monster Image</string>
+    <string name="description">Description: %1$s</string>
 </resources>

@@ -9,11 +9,15 @@
         android:id="@+id/monstersListFragment"
         android:name="com.views.samplemvvmapp.ui.monster_list.MonstersListFragment"
         android:label="fragment_monsters_list_list"
-        tools:layout="@layout/fragment_monsters_list" />
+        tools:layout="@layout/fragment_monsters_list">
+        <action
+            android:id="@+id/action_monsterListFragment_to_monsterDetailFragment"
+            app:destination="@id/monsterDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/monsterDetailsFragment"
-        android:name="com.views.samplemvvmapp.ui.monster_list.MonstersListFragment"
+        android:name="com.views.samplemvvmapp.ui.monster_details.MonsterDetailsFragment"
         android:label="fragment_monsters_details"
         tools:layout="@layout/fragment_monster_details" />
 </navigation>

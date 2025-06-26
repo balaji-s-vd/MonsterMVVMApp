@@ -9,7 +9,8 @@ import com.views.samplemvvmapp.databinding.FragmentMonstersListDetailsBinding
 import com.views.samplemvvmapp.domain.MonsterListDetails
 
 class MyMonstersListDetailsRecyclerViewAdapter(
-    private val values: List<MonsterListDetails>
+    private val values: List<MonsterListDetails>,
+    private val onItemClick: (MonsterListDetails) -> Unit
 ) : RecyclerView.Adapter<MyMonstersListDetailsRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,6 +29,9 @@ class MyMonstersListDetailsRecyclerViewAdapter(
         val item = values[position]
         holder.idView.text = item.name.first().toString()
         holder.contentView.text = item.name
+        holder.contentView.rootView.setOnClickListener {
+            onItemClick(item)
+        }
     }
 
     override fun getItemCount(): Int = values.size
